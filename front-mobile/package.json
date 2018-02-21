@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+
+  },
+  "devDependencies": {
+
+  },
+  "dependencies": {
+    "socket.io":"latest",
+    "express": "latest"
+  }
+}
+  

@@ -1,0 +1,70 @@
+version: "3.3"
+services:
+  front-app:
+    build: ./front-app
+    command: nodemon -L --inspect=0.0.0.0:5858 --watch src --watch server.js server.js
+    volumes:
+      - type: bind
+        source: ./howto-components
+        target: /app
+      - type: bind
+        source: ./front-app/server.js
+        target: /server.js
+
+    ports:
+      - "1812:1812"
+      - "5858:5858"
+
+  front-mobile:
+    build: ./front-mobile   
+    command: nodemon -L --inspect=0.0.0.0:5859 --watch src --watch server.js server.js
+    volumes:
+      - type: bind
+        source: ./front-mobile/src
+        target: /src
+      - type: bind
+        source: ./front-mobile/server.js
+        target: /server.js
+      - type: volume
+        source: distMobile
+        target: /distMobile
+      - type: volume
+        source: distFront
+        target: /distFront
+    ports:
+      - "1813:1813"
+      - "5859:5859"
+
+  mobile-build:
+    build: ./mobile-dev
+    command: webpack --watch
+    volumes:
+      - type: bind
+        source: ./mobile-dev/src
+        target: /src
+      - type: volume
+        source: distMobile
+        target: /dist
+
+  front-build:
+    build: ./front-dev
+    command: webpack --watch
+    volumes:
+      - type: bind
+        source: ./front-dev/src
+        target: /src
+      - type: volume
+        source: distFront
+        target: /dist
+    
+volumes:
+  distFront:
+  distMobile:
+
+ 
+
+
+
+
+
+
