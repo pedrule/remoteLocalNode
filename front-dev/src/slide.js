@@ -2,16 +2,13 @@ import {Element, html} from 'PolymerElement';
 import '@polymer/iron-flex-layout/iron-flex-layout';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes';
 
+
 export class MySlide extends Element{
     static get properties() {
         return {
             title: {
                 type: String,
             },
-
-            idea:{
-                type: String
-            }
         }
     }
     static get template(){
@@ -26,7 +23,7 @@ export class MySlide extends Element{
             }
 
             #container{
-                background: #ece7e7;
+                background: #242424;
                 @apply --layout-center;
             }
             #titre{
@@ -45,8 +42,14 @@ export class MySlide extends Element{
         </style>
         <div id="container" class="layout vertical center self-stretch flex">
             <div id="titre" class="layout vertical self-stretch">[[title]]</div>
-            <div class="flex self-stretch">[[idea]]</div>
+            ${this.templateContent}
         </div>
+        `
+    }
+
+    static get templateContent(){
+        return html`
+        <div class="flex self-stretch"></div>
         `
     }
 }

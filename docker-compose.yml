@@ -20,9 +20,6 @@ services:
     command: nodemon -L --inspect=0.0.0.0:5859 --watch src --watch server.js server.js
     volumes:
       - type: bind
-        source: ./front-mobile/src
-        target: /src
-      - type: bind
         source: ./front-mobile/server.js
         target: /server.js
       - type: volume
@@ -53,12 +50,48 @@ services:
       - type: bind
         source: ./front-dev/src
         target: /src
+      - type: bind
+        source: ./front-dev/assets
+        target: /assets
       - type: volume
         source: distFront
         target: /dist
+
+  demo-build:
+    build: ./demo-build
+    command: webpack --watch
+    volumes:
+      - type: bind
+        source: ./demo-build/src
+        target: /src
+      - type: bind
+        source: ./demo-build/assets
+        target: /assets
+      - type: volume
+        source: demoFront
+        target: /dist
+
+  demo:
+    build: ./demo
+    command: nodemon -L --inspect=0.0.0.0:5860 --watch src --watch server.js server.js
+    volumes:
+      - type: bind
+        source: ./demo
+        target: /app
+      - type: bind
+        source: ./front-app/server.js
+        target: /server.js
+      - type: volume
+        source: demoFront
+        target: /dist
+
+    ports:
+      - "1814:1814"
+      - "5860:5860"
     
 volumes:
   distFront:
+  demoFront:
   distMobile:
 
  

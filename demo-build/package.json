@@ -34,8 +34,7 @@
     "dependencies": {
       "@polymer/polymer": "next",
       "@polymer/iron-flex-layout": "next",
-      "@polymer/iron-pages": "next",
-      "@polymer/iron-image": "next"
+      "@polymer/iron-pages": "next"
     }
   }
   
