@@ -5,9 +5,6 @@ services:
     command: nodemon -L --inspect=0.0.0.0:5858 --watch src --watch server.js server.js
     volumes:
       - type: bind
-        source: ./howto-components
-        target: /app
-      - type: bind
         source: ./front-app/server.js
         target: /server.js
 
@@ -64,9 +61,6 @@ services:
       - type: bind
         source: ./demo-build/src
         target: /src
-      - type: bind
-        source: ./demo-build/assets
-        target: /assets
       - type: volume
         source: demoFront
         target: /dist
