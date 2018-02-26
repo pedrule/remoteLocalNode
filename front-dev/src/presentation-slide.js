@@ -4,7 +4,15 @@ import '@polymer/iron-flex-layout/iron-flex-layout-classes';
 
 
 export class PresentationSlide extends Element{
-    
+  static get properties() {
+    return {
+        transition: {
+            type: String,
+            value:"none"
+        }
+    }
+}
+
 
     static get template(){
         return html`
@@ -16,6 +24,7 @@ export class PresentationSlide extends Element{
             @apply --layout-vertical;
             @apply --layout-center;
             @apply --layout-flex;
+            transition: transform .5s ease-in;
         }
 
         :host(.active) {

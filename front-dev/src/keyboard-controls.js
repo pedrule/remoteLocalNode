@@ -1,9 +1,9 @@
-import {Element, html} from 'PolymerElement';
+import {html} from 'PolymerElement';
 import '@polymer/iron-flex-layout/iron-flex-layout';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes';
+import { Transition } from "./transition";
 
-
-export class KeyboardControls extends Element{
+export const KeyboardControls = SuperClass => class extends Transition(SuperClass) {
 
     connectedCallback() {
         super.connectedCallback();
@@ -15,15 +15,9 @@ export class KeyboardControls extends Element{
     }
 
     __onKeyDown(event) {
-        switch (event.keyCode) {
-            case 39:
-                this.parentNode.__nextStep();
-                break;
-            case 37:
-                this.parentNode.__prevStep();
-                break;
-        }    
+        if (event.keyCode === 39 || event.keyCode === 37) {
+            this.__assignSlide(event.keyCode === 39);
+        }
     }
-}
 
-customElements.define('keyboard-controls', KeyboardControls);  
+}

@@ -2,15 +2,10 @@ import {Element, html} from 'PolymerElement';
 import '@polymer/iron-flex-layout/iron-flex-layout';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes';
 
-
-export class Presentation extends Element{
+export class Presentation extends Element {
     static get properties() {
         return {
-            slides: {
-                type: Array,
-                value: []
-            },
-            activeSlide: {
+            selected: {
                 type: Number,
                 value: 0
             },
@@ -50,9 +45,9 @@ export class Presentation extends Element{
 
     connectedCallback() {
         super.connectedCallback();
-        this.addEventListener("hashchange", function(){
-            this.__goToSlide(__getSlideNumberFromHash());
-          }.bind(this));
+        this.addEventListener("switch", (event) => {
+            this.__goToSlide(this.__getSlideNumberFromHash());
+          });
     }
 
     __goToSlide(number, forward) {
@@ -71,10 +66,6 @@ export class Presentation extends Element{
           history.pushState(null, null, '#' + number);
           dispatchSlideChangedEvent.call(this);
         }.bind(this));
-    }
-
-    __getSlideNumberFromHash() {
-        return parseInt(location.hash.slice(1), 10) || 0;
     }
 
     __dispatchSlideChangedEvent() {

@@ -32,8 +32,7 @@ export class MySlide extends Element{
                 text-transform: uppercase;
                 font-style: oblique;
                 padding-left: 150px;
-                color: grey; 
-                height: 50px;
+                color: grey;
             }
 
             ::slotted(span){
@@ -41,7 +40,7 @@ export class MySlide extends Element{
             }
         </style>
         <div id="container" class="layout vertical center self-stretch flex">
-            <div id="titre" class="layout vertical self-stretch">[[title]]</div>
+            
             ${this.templateContent}
         </div>
         `
