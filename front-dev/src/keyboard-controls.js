@@ -7,11 +7,10 @@ export const KeyboardControls = SuperClass => class extends Transition(SuperClas
 
     connectedCallback() {
         super.connectedCallback();
-        this.__onTapKeyboardBind = this.__onTapKeyboard.bind(this);
     }
 
     __onTapKeyboard(event) {
-        document.onkeydown = this.__onKeyDown(event);
+        window.addEventListener('keydown', this.__onKeyDown.bind(this));
     }
 
     __onKeyDown(event) {
