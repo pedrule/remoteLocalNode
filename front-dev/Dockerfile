@@ -1,6 +1,6 @@
 FROM node:latest
 
-RUN npm install -g webpack
+RUN npm install -g webpack@3.0.0
 RUN npm install -g webpack-dev-server
 RUN npm install -g yarn
 COPY ./package.json /package.json
